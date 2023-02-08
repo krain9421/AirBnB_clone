@@ -14,11 +14,23 @@ class BaseModel:
                                 is changed
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initializes the BaseModel"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = self.created_at
+        if kwargs:
+            self.id = kwargs.get('id')
+            self.created_at = datetime.fromisoformat(kwargs.get('created_at'))
+            self.update_at = datetime.fromisoformat(kwargs.get('updated_at'))
+            kwargs.pop('id')
+            kwargs.pop('created_at')
+            kwargs.pop('updated_at')
+            self.__dict__.update(kwargs)
+            #self.my_number = kwargs.get('my_number')
+            #self.name = kwargs.get('my_name')
+
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.today()
+            self.updated_at = datetime.now()
 
     def save(self):
         """Updates the public instance attribute `updated_at` with
