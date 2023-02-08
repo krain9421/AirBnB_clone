@@ -24,8 +24,6 @@ class BaseModel:
             kwargs.pop('created_at')
             kwargs.pop('updated_at')
             self.__dict__.update(kwargs)
-            #self.my_number = kwargs.get('my_number')
-            #self.name = kwargs.get('my_name')
 
         else:
             self.id = str(uuid.uuid4())
