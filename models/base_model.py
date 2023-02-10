@@ -24,6 +24,7 @@ class BaseModel:
             kwargs.pop('id')
             kwargs.pop('created_at')
             kwargs.pop('updated_at')
+            kwargs.pop('__class__')
             self.__dict__.update(kwargs)
 
         else:
