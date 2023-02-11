@@ -1,1 +1,1 @@
-This folder contains the models.
+This package contains the models.
