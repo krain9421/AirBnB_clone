@@ -1,2 +1,4 @@
 #!/usr/bin/python3
-"""__init__ magic method for tests"""
+"""Initialization magic method for all the 
+    tests
+"""

@@ -58,4 +58,4 @@ class BaseModel:
         my_dict.update(__class__=self.__class__.__name__)
         my_dict.update(created_at=self.created_at.isoformat())
         my_dict.update(updated_at=self.updated_at.isoformat())
-        return (my_dict)
+        return my_dict
