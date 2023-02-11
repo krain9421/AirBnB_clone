@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-"""Init module for models"""
+"""Init magic module for initializing models"""
 from models.engine.file_storage import FileStorage
 
 
-# Create an instance of FileStorage
 storage = FileStorage()
 storage.reload()

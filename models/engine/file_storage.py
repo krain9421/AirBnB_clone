@@ -47,5 +47,5 @@ class FileStorage:
                 # if content != "":
                 FileStorage.__objects = json.loads(content)
             g.close()
-        else:
-            pass
+        """else:
+            pass"""
