@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-"""__init__ magic method for engine"""
+"""Initialization magic module for the engine"""
