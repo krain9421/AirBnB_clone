@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""BaseModel that defines all common attributes/methods for other classes"""
+"""BaseModel that defines all common attributes/methods
+    for other classes
+"""
 import uuid
 from datetime import datetime
 from models import storage
@@ -16,7 +18,7 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
-        """Initializes the BaseModel"""
+        """Function that initializes the BaseModel"""
         # tformat = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for k, v in kwargs.items():

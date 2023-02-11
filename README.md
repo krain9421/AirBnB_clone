@@ -1,7 +1,6 @@
-0x00. AirBnB clone - The console
+AirBnB clone - The console
 
-The AirBnB clone project.
-
-First step: Write a command interpreter to manage your AirBnB objects.
-
-Nwigwe Chidubem
+The command intepreter manages your AirBnb objects:
+	Start it by running console.py
+	Type in commands to use it.
+	"create BaseModel"
