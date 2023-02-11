@@ -23,5 +23,6 @@ class TestBaseModel(unittest.TestCase):
         name = type(new).__name__
         rep = "[{}] ({}) {}".format(name, new.id, new.__dict__)
 
+
 if __name__ == '__main__':
     unittest.main()
