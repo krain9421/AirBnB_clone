@@ -17,7 +17,9 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initializes the BaseModel"""
+        tformat = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
+            """
             self.id = kwargs.get('id')
             self.created_at = datetime.fromisoformat(kwargs.get('created_at'))
             self.update_at = datetime.fromisoformat(kwargs.get('updated_at'))
@@ -26,6 +28,14 @@ class BaseModel:
             kwargs.pop('updated_at')
             kwargs.pop('__class__')
             self.__dict__.update(kwargs)
+            """
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updated_at":
+                    self.__dict__[k] = datetime.fromisoformat(v)
+                elif k == "__class__":
+                    pass
+                else:
+                    self.__dict__[k] = v
 
         else:
             self.id = str(uuid.uuid4())
@@ -51,7 +61,7 @@ class BaseModel:
             of the instance
         """
         my_dict = self.__dict__.copy()
-        my_dict.update(__class__="BaseModel")
+        my_dict.update(__class__=self.__class__.__name__)
         my_dict.update(created_at=self.created_at.isoformat())
         my_dict.update(updated_at=self.updated_at.isoformat())
         return (my_dict)
