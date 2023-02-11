@@ -41,6 +41,9 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.now()
+            # print("--------DEBUGGING--------")
+            # print("obj after __init__:\n{}".format(self.__dict__))
+            # print("--------DEBUGGING--------")
             storage.new(self)
 
     def save(self):
@@ -52,9 +55,8 @@ class BaseModel:
 
     def __str__(self):
         """Returns the printable representation of the BaseModel."""
-        rep = "[BaseModel] " + "(" + self.id + ") "
-        rep += str(self.__dict__)
-        return (rep)
+        rep = self.__class__.__name__
+        return "[{}] ({}) {}".format(rep, self.id, self.__dict__)
 
     def to_dict(self):
         """Returns a dictionary containing all key/values of __dict__
