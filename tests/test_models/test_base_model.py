@@ -2,6 +2,7 @@
 """Unittests for base_model module"""
 import unittest
 from models.base_model import BaseModel
+from datetime import datetime
 
 
 class TestBaseModel(unittest.TestCase):
@@ -22,6 +23,32 @@ class TestBaseModel(unittest.TestCase):
         new = BaseModel()
         name = type(new).__name__
         rep = "[{}] ({}) {}".format(name, new.id, new.__dict__)
+
+    def test_uuid_BaseModel(self):
+        """Tests to check if instances of BaseModel
+            have unique `id` attribute value.
+        """
+        model1 = BaseModel()
+        model2 = BaseModel()
+        self.assertNotEqual(model1.id, model2.id)
+
+    def test_datetime_BaseModel(self):
+        """Tests to check if `updated_at` attribute
+            is a datetime object.
+        """
+        new = BaseModel()
+        self.assertEqual(type(new.updated_at), datetime)
+        self.assertEqual(type(new.created_at), datetime)
+
+    def test_save_BaseModel(self):
+        """Tests to check if `save(self)` method
+            updates the `updated_at` attribute
+        """
+        new = BaseModel()
+        updated1 = new.updated_at
+        new.save()
+        updated2 = new.updated_at
+        self.assertNotEqual(updated1, updated2)
 
 
 if __name__ == '__main__':
