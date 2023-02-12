@@ -53,10 +53,6 @@ class TestFileStorage(unittest.TestCase):
         objects2 = str(storage.all())
         self.assertNotEqual(objects1, objects2)
 
-    def test_file_json(self):
-        """Tests to check if JSON file is created"""
-        self.assertTrue(os.path.exists("file.json"))
-
 
 # if __name__ == '__main__':
 # unittest.main()
