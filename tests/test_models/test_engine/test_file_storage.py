@@ -58,5 +58,5 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(os.path.exists("file.json"))
 
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+# unittest.main()
