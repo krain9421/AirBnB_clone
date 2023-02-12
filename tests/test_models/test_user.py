@@ -8,7 +8,7 @@ from models.user import User
 from datetime import datetime
 
 class Test_User(unittest.TestCase):
-    """Defines unittests for user module"""
+    """Defines unittests for user module."""
 
     def test_instance_uuid_is_unique(self):
         """Tests to check if uuids of different
@@ -20,14 +20,14 @@ class Test_User(unittest.TestCase):
 
     def test_instance_created_at_is_str(self):
         """Test to check the type of `created_at`
-            attribute
+            attribute.
         """
         user1 = User()
         self.assertEqual(type(user1.created_at), datetime)
         self.assertEqual(type(user1.updated_at), datetime)
 
     def test_save_method(self):
-        """Tests to check the `save(self)` method"""
+        """Tests to check the `save(self)` method."""
         from time import sleep
         user1 = User()
         sleep(1)
@@ -36,7 +36,7 @@ class Test_User(unittest.TestCase):
 
     def test_representation(self):
         """Tests to check the string
-            representation of a User instance
+            representation of a User instance.
         """
         user1 = User()
         rep = "[{}] ({}) {}".format(user1.__class__.__name__, user1.id, user1.__dict__)
@@ -44,7 +44,7 @@ class Test_User(unittest.TestCase):
 
     def test_instance_dictionary(self):
         """Tests to check if a User instance
-            can be created from a dictionary
+            can be created from a dictionary.
         """
         user1 = User()
         user1.email = "go@lang.com"
@@ -59,12 +59,28 @@ class Test_User(unittest.TestCase):
 
     def test_new_instance_from_dictionary(self):
         """Tests to check if a User instance
-            can be created from a dictionary
+            can be created from a dictionary.
         """
         user1 = User()
         model_json = user1.to_dict()
         user2 = User(**model_json)
         self.assertFalse(user1 is user2)
+
+    def test_new_instance_properties_against_old(self):
+        """Tests a new instance against an old
+            instance.
+        """
+        user1 = User()
+        user1.name = "User1"
+        model_json = user1.to_dict()
+        user2 = User(**model_json)
+        self.assertEqual(type(user1), type(user2))
+        self.assertEqual(user1.id, user2.id)
+        self.assertEqual(user1.email, user2.email)
+        self.assertEqual(user1.first_name, user2.first_name)
+        self.assertEqual(user1.last_name, user2.last_name)
+        self.assertEqual(user1.password, user2.password)
+        self.assertEqual(user1.name, user2.name)
 
 if __name__ == '__main__':
     unittest.main()

@@ -7,18 +7,18 @@ import os
 
 
 class FileStorage:
-    """Defines a FileStorage class"""
+    """Defines a FileStorage class."""
 
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """Returns the dictionary `__objects`"""
+        """Returns the dictionary `__objects`."""
         return (self.__objects)
 
     def new(self, obj):
         """Sets in __objects the obj with key
-            <obj class name>.id
+            <obj class name>.id.
         """
         from models.base_model import BaseModel
         if obj and isinstance(obj, BaseModel):
@@ -30,7 +30,7 @@ class FileStorage:
             self.__objects.update({key: obj})
 
     def save(self):
-        """Serializes `__objects` to the JSON file path"""
+        """Serializes `__objects` to the JSON file path."""
         with open(self.__file_path, 'w', encoding='utf-8') as f:
             # content = json.dumps(FileStorage.__objects)
             # f.write(content)
@@ -44,7 +44,7 @@ class FileStorage:
         """Deserializes the JSON file to __objects
             (only if the JSON file `__file_path` exists;
             otherwise, do nothing.)
-            No exception should be raised if file doesn't exist
+            No exception should be raised if file doesn't exist.
         """
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as g:
