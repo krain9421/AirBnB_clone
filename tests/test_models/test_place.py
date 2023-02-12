@@ -88,5 +88,5 @@ class Test_Place(unittest.TestCase):
         self.assertFalse(user1 is user2)
 
 
-# if __name__ == '__main__':
-# unittest.main()
+if __name__ == '__main__':
+    unittest.main()
