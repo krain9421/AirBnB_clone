@@ -47,6 +47,8 @@ class FileStorage:
         """
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r', encoding='utf-8') as g:
+                from models.base_model import BaseModel
+
                 content = g.read()
                 FileStorage.__objects = {}
                 objects_json = json.loads(content)
