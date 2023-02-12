@@ -20,7 +20,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(name, "FileStorage")
     """
 
-    def test_storage_all(self):
+    def test_all(self):
         """Tests the return type of storage.all()
             method.
         """
