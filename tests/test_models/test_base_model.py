@@ -73,6 +73,16 @@ class TestBaseModel(unittest.TestCase):
         model2 = BaseModel(**model1_json)
         self.assertFalse(model1 is model2)
 
+    def test_instance_datetime_attributes(self):
+        """Tests to check the datetime values of
+            different instances.
+        """
+        model1 = BaseModel()
+        model1_json = model1.to_dict()
+        model2 = BaseModel(**model1_json)
+        self.assertEqual(type(model2.created_at), datetime)
+        self.assertEqual(type(model2.updated_at), datetime)
+
 
 if __name__ == '__main__':
     unittest.main()
