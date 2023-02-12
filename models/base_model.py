@@ -4,7 +4,7 @@
 """
 import uuid
 from datetime import datetime
-from models import storage
+# from models import storage
 
 
 class BaseModel:
@@ -36,14 +36,14 @@ class BaseModel:
             # print("--------DEBUGGING--------")
             # print("obj after __init__:\n{}".format(self.__dict__))
             # print("--------DEBUGGING--------")
-            storage.new(self)
+            # storage.new(self)
 
     def save(self):
         """Updates the public instance attribute `updated_at` with
             the current datetime
         """
         self.updated_at = datetime.now()
-        storage.save()
+        # storage.save()
 
     def __str__(self):
         """Returns the printable representation of the BaseModel."""
