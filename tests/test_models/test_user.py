@@ -33,3 +33,38 @@ class Test_User(unittest.TestCase):
         sleep(1)
         user1.save()
         self.assertNotEqual(user1.created_at, user1.updated_at)
+
+    def test_representation(self):
+        """Tests to check the string
+            representation of a User instance
+        """
+        user1 = User()
+        rep = "[{}] ({}) {}".format(user1.__class__.__name__, user1.id, user1.__dict__)
+        self.assertEqual(user1.__str__(), rep)
+
+    def test_instance_dictionary(self):
+        """Tests to check if a User instance
+            can be created from a dictionary
+        """
+        user1 = User()
+        user1.email = "go@lang.com"
+        user1.first_name = "Amy"
+        user1.last_name = "Alexandria"
+        user1.password = "r00t"
+        self.assertTrue("__class__" in user1.to_dict())
+        self.assertTrue("email" in user1.to_dict())
+        self.assertTrue("first_name" in user1.to_dict())
+        self.assertTrue("last_name" in user1.to_dict())
+        self.assertTrue("password" in user1.to_dict())
+
+    def test_new_instance_from_dictionary(self):
+        """Tests to check if a User instance
+            can be created from a dictionary
+        """
+        user1 = User()
+        model_json = user1.to_dict()
+        user2 = User(**model_json)
+        self.assertFalse(user1 is user2)
+
+if __name__ == '__main__':
+    unittest.main()
