@@ -71,7 +71,7 @@ class TestBaseModel(unittest.TestCase):
         model1 = BaseModel()
         model1_json = model1.to_dict()
         model2 = BaseModel(**model1_json)
-        self.assertTrue(model1 is not model2)
+        self.assertFalse(model1 is model2)
 
 
 if __name__ == '__main__':
