@@ -7,6 +7,7 @@ import unittest
 from models.user import User
 from datetime import datetime
 
+
 class Test_User(unittest.TestCase):
     """Defines unittests for user module."""
 
@@ -39,7 +40,8 @@ class Test_User(unittest.TestCase):
             representation of a User instance.
         """
         user1 = User()
-        rep = "[{}] ({}) {}".format(user1.__class__.__name__, user1.id, user1.__dict__)
+        name = user1.__class__.__name__
+        rep = "[{}] ({}) {}".format(name, user1.id, user1.__dict__)
         self.assertEqual(user1.__str__(), rep)
 
     def test_instance_dictionary(self):
@@ -81,6 +83,7 @@ class Test_User(unittest.TestCase):
         self.assertEqual(user1.last_name, user2.last_name)
         self.assertEqual(user1.password, user2.password)
         self.assertEqual(user1.name, user2.name)
+
 
 if __name__ == '__main__':
     unittest.main()
