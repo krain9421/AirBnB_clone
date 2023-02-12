@@ -4,7 +4,7 @@ import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models import storage
-from dattime import dattime
+from datetime import datetime
 from uuid import uuid4
 
 
@@ -31,11 +31,10 @@ class TestFileStorage(unittest.TestCase):
         """Tests the `new(self, obj)` method
             of FileStorage
         """
-        new = BaseModel()
+        model1 = BaseModel()
         objects = str(storage.all())
-        new = BaseModel()
-        objects2 = str(storage.all())
-        self.assertNotEqual(objects, objects2)
+        model2 = BaseModel()
+        self.assertNotEqual(objects, str(storage.all()))
 
     def test_save_reload(self):
         """Test `save(self)` and `reload(self)`
