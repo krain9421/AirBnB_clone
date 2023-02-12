@@ -20,19 +20,23 @@ class FileStorage:
         """Sets in __objects the obj with key
             <obj class name>.id
         """
-        key = type(obj).__name__ + "." + obj.id
-        # Debugging
-        # print("--------DEBUGGING--------")
-        # print("obj:\n{}".format(obj.to_dict()))
-        # print("--------DEBUGGING--------")
-        FileStorage.__objects[key] = obj.to_dict()
+        if type(obj).__name__ == "BaseModel":
+            key = type(obj).__name__ + "." + obj.id
+            # Debugging
+            # print("--------DEBUGGING--------")
+            # print("obj:\n{}".format(obj.to_dict()))
+            # print("--------DEBUGGING--------")
+            FileStorage.__objects[key] = obj
 
     def save(self):
         """Serializes `__objects` to the JSON file path"""
         with open(FileStorage.__file_path, 'w', encoding='utf-8') as f:
             # content = json.dumps(FileStorage.__objects)
             # f.write(content)
-            json.dump(FileStorage.__objects, f)
+            objects_json = {}
+            for key, obj in FileStorage.__objects.items():
+                objects_json[key] = obj.to_dict()
+            json.dump(objects_json, f)
         f.close()
 
     def reload(self):
