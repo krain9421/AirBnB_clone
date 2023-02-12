@@ -64,6 +64,15 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue("id" in new_dict)
         self.assertTrue("__class__" in new_dict)
 
+    def test_instance_from_dictionary(self):
+        """Tests creating a BaseModel instance
+            from a dictionary.
+        """
+        model1 = BaseModel()
+        model1_json = model1.to_dict()
+        model2 = BaseModel(**model1_json)
+        self.assertTrue(model1 is not model2)
+
 
 if __name__ == '__main__':
     unittest.main()
