@@ -84,5 +84,5 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(model2.updated_at), datetime)
 
 
-# if __name__ == '__main__':
-# unittest.main()
+if __name__ == '__main__':
+    unittest.main()
