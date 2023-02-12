@@ -48,8 +48,12 @@ class FileStorage:
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r', encoding='utf-8') as g:
                 content = g.read()
-                # if content != "":
-                FileStorage.__objects = json.loads(content)
+                FileStorage.__objects = {}
+                objects_json = json.loads(content)
+                for key, obj in objects_json.items():
+                    name = obj["__class__"]
+                    r_obj = eval("{}({})".format(name, "**obj"))
+                    self.new(r_obj)
             g.close()
         """else:
             pass"""
