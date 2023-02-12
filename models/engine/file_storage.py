@@ -53,12 +53,12 @@ class FileStorage:
                 from models.user import User
 
                 content = g.read()
-                self.__objects = {}
                 objects_json = json.loads(content)
+                self.__objects = {}
                 for key, obj in objects_json.items():
                     name = obj["__class__"]
                     r_obj = eval("{}({})".format(name, "**obj"))
                     self.new(r_obj)
             g.close()
-        """else:
-            pass"""
+        else:
+            pass
