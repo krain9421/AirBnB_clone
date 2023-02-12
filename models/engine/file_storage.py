@@ -14,7 +14,7 @@ class FileStorage:
 
     def all(self):
         """Returns the dictionary `__objects`"""
-        return (FileStorage.__objects)
+        return (self.__objects)
 
     def new(self, obj):
         """Sets in __objects the obj with key
@@ -27,15 +27,15 @@ class FileStorage:
             # print("--------DEBUGGING--------")
             # print("obj:\n{}".format(obj.to_dict()))
             # print("--------DEBUGGING--------")
-            FileStorage.__objects[key] = obj
+            self.__objects[key] = obj
 
     def save(self):
         """Serializes `__objects` to the JSON file path"""
-        with open(FileStorage.__file_path, 'w', encoding='utf-8') as f:
+        with open(self.__file_path, 'w', encoding='utf-8') as f:
             # content = json.dumps(FileStorage.__objects)
             # f.write(content)
             objects_json = {}
-            for key, obj in FileStorage.__objects.items():
+            for key, obj in self.__objects.items():
                 objects_json[key] = obj.to_dict()
             json.dump(objects_json, f)
         f.close()
@@ -46,14 +46,14 @@ class FileStorage:
             otherwise, do nothing.)
             No exception should be raised if file doesn't exist
         """
-        if os.path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, 'r', encoding='utf-8') as g:
+        if os.path.exists(self.__file_path):
+            with open(self.__file_path, 'r', encoding='utf-8') as g:
                 # internal import statements
                 from models.base_model import BaseModel
                 from models.user import User
 
                 content = g.read()
-                FileStorage.__objects = {}
+                self.__objects = {}
                 objects_json = json.loads(content)
                 for key, obj in objects_json.items():
                     name = obj["__class__"]
