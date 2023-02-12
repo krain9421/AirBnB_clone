@@ -27,7 +27,7 @@ class FileStorage:
             # print("--------DEBUGGING--------")
             # print("obj:\n{}".format(obj.to_dict()))
             # print("--------DEBUGGING--------")
-            self.__objects[key] = obj
+            self.__objects.update({key: obj})
 
     def save(self):
         """Serializes `__objects` to the JSON file path"""
@@ -36,7 +36,7 @@ class FileStorage:
             # f.write(content)
             objects_json = {}
             for key, obj in self.__objects.items():
-                objects_json[key] = obj.to_dict()
+                objects_json.update({key: obj.to_dict()})
             json.dump(objects_json, f)
         f.close()
 
