@@ -107,6 +107,7 @@ class HBNBCommand(cmd.Cmd):
         elif not idi:
             print("** instance id missing **")
         else:
+            storage.reload()
             d = storage.all()
             # Flag for checking if instance is found
             flag = False
@@ -158,13 +159,27 @@ class HBNBCommand(cmd.Cmd):
             all instances based or not on class name
         """
         if not name or name in class_dict.keys():
-            # storage.reload()
-            d = storage.all()
-            list_all = []
-            for key in d.keys():
-                model_json = d[key].to_dict()
-                temp = BaseModel(**model_json)
-                list_all.append(str(temp))
+            if not name:
+                # Print a list of all class objects
+                storage.reload()
+                d = storage.all()
+                list_all = []
+                for key in d.keys():
+                    list_all.append(str(d[key]))
+            else:
+                # Print a list of only specified class objects
+                storage.reload()
+                d = storage.all()
+                list_all = []
+                for key in d.keys():
+                    if type(d[key]).__name__ == name:
+                        # print("--------DEBUGING--------")
+                        # print("Object exists in storage")
+                        # print("--------DEBUGING--------")
+                        # model_json = d[key].to_dict()
+                        # temp = BaseModel(**model_json)
+                        list_all.append(str(d[key]))
+
             print(list_all)
         else:
             print("** class doesn't exist **")
