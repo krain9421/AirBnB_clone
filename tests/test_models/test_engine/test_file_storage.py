@@ -2,6 +2,8 @@
 """Unittests for file_storage module"""
 import unittest
 from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+from models import storage
 
 
 class TestFileStorage(unittest.TestCase):
@@ -22,6 +24,16 @@ class TestFileStorage(unittest.TestCase):
         new = FileStorage()
         d = new.all()
         self.assertEqual(type(d), dict)
+
+    def test_new(self):
+        """Tests the `new(self, obj)` method
+            of FileStorage
+        """
+        new = BaseModel()
+        objects = str(storage.all())
+        new = BaseModel()
+        objects2 = str(storage.all())
+        self.assertNotEqual(objects, objects2)
 
     if __name__ == '__main__':
         unittest.main()
