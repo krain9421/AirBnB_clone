@@ -34,7 +34,7 @@ class BaseModel:
             self.created_at = datetime.today()
             self.updated_at = datetime.now()
             # print("--------DEBUGGING--------")
-            # print("obj after __init__:\n{}".format(self.__dict__))
+            # print("created object:\n{}".format(self.__dict__))
             # print("--------DEBUGGING--------")
             storage.new(self)
 

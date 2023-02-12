@@ -4,6 +4,7 @@
 """
 import cmd
 import inspect
+from models.user import User
 from models.base_model import BaseModel
 from models import storage
 import sys
@@ -157,10 +158,11 @@ class HBNBCommand(cmd.Cmd):
             all instances based or not on class name
         """
         if not name or name in class_dict.keys():
+            # storage.reload()
             d = storage.all()
             list_all = []
             for key in d.keys():
-                model_json = d[key]
+                model_json = d[key].to_dict()
                 temp = BaseModel(**model_json)
                 list_all.append(str(temp))
             print(list_all)

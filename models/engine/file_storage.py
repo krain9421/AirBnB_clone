@@ -20,7 +20,8 @@ class FileStorage:
         """Sets in __objects the obj with key
             <obj class name>.id
         """
-        if type(obj).__name__ == "BaseModel":
+        from models.base_model import BaseModel
+        if obj and isinstance(obj, BaseModel):
             key = type(obj).__name__ + "." + obj.id
             # Debugging
             # print("--------DEBUGGING--------")
@@ -47,7 +48,9 @@ class FileStorage:
         """
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r', encoding='utf-8') as g:
+                # internal import statements
                 from models.base_model import BaseModel
+                from models.user import User
 
                 content = g.read()
                 FileStorage.__objects = {}
