@@ -1,25 +1,28 @@
 #!/usr/bin/python3
-"""Unittests for file_storage module"""
+"""
+Unittest module for testing file_storage
+module.
+"""
+
 import unittest
-import os
+from uuid import uuid4
+from datetime import datetime
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models import storage
-# from datetime import datetime
-from uuid import uuid4
 
 
 class TestFileStorage(unittest.TestCase):
-    """Defines unittest for file_storage module"""
+    """
+    Defines tests for file_storage module.
+    """
 
     def test_is_FileStorage(self):
         """
         Tests to check if a FileModel instance
         is created.
         """
-        new = FileStorage()
-        name = type(new).__name__
-        self.assertEqual(name, "FileStorage")
+        self.assertTrue(isinstance(storage, FileStorage))
 
     def test_all(self):
         """
@@ -54,5 +57,5 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(objects1, objects2)
 
 
-# if __name__ == '__main__':
-# unittest.main()
+if __name__ == '__main__':
+    unittest.main()
