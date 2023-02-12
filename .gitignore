@@ -1,0 +1,7 @@
+Files/Folders to be ignored by git
+models/__pycache__/
+models/engine/__pycache__/
+tests/test_models/__pycache__/
+tests/test_models/test_engine/__pycache__/
+*.swp
+file.json
