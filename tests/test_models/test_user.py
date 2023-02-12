@@ -85,5 +85,5 @@ class Test_User(unittest.TestCase):
         self.assertEqual(user1.name, user2.name)
 
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+# unittest.main()
