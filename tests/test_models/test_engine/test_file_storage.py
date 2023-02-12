@@ -4,6 +4,8 @@ import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models import storage
+from dattime import dattime
+from uuid import uuid4
 
 
 class TestFileStorage(unittest.TestCase):
@@ -21,9 +23,9 @@ class TestFileStorage(unittest.TestCase):
         """Tests the return type of storage.all()
             method.
         """
-        new = FileStorage()
-        d = new.all()
-        self.assertEqual(type(d), dict)
+        # new = FileStorage()
+        # d = new.all()
+        self.assertEqual(type(storage.all()), dict)
 
     def test_new(self):
         """Tests the `new(self, obj)` method
