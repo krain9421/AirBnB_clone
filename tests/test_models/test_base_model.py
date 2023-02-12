@@ -16,15 +16,16 @@ class TestBaseModel(unittest.TestCase):
         name = type(new).__name__
         self.assertEqual(name, "BaseModel")
 
-    def test_print_BaseModel(self):
+    def test_representation(self):
         """Tests to check the result of the string
             representation of a BaseModel instance
         """
         new = BaseModel()
         name = type(new).__name__
         rep = "[{}] ({}) {}".format(name, new.id, new.__dict__)
+        self.assertEqual(new.__str__(), rep)
 
-    def test_uuid_BaseModel(self):
+    def test_uuid(self):
         """Tests to check if instances of BaseModel
             have unique `id` attribute value.
         """
@@ -32,7 +33,7 @@ class TestBaseModel(unittest.TestCase):
         model2 = BaseModel()
         self.assertNotEqual(model1.id, model2.id)
 
-    def test_datetime_BaseModel(self):
+    def test_datetime(self):
         """Tests to check if `updated_at` attribute
             is a datetime object.
         """
@@ -40,7 +41,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(new.updated_at), datetime)
         self.assertEqual(type(new.created_at), datetime)
 
-    def test_save_BaseModel(self):
+    def test_save(self):
         """Tests to check if `save(self)` method
             updates the `updated_at` attribute
         """
