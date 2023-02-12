@@ -16,7 +16,7 @@ class Test_City(unittest.TestCase):
 
     def test_instance_uuid_is_unique(self):
         """
-        Tests if uuid is unique for each 
+        Tests if uuid is unique for each
         instance.
         """
         user1 = City()
@@ -69,3 +69,7 @@ class Test_City(unittest.TestCase):
         model_json = user1.to_dict()
         user2 = City(**model_json)
         self.assertFalse(user1 is user2)
+
+
+if __name__ == '__main__':
+    unittest.main()

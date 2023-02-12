@@ -57,5 +57,6 @@ class TestFileStorage(unittest.TestCase):
         """Tests to check if JSON file is created"""
         self.assertTrue(os.path.exists("file.json"))
 
-    if __name__ == '__main__':
-        unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
