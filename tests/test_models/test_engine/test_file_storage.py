@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unittests for file_storage module"""
 import unittest
+import os
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models import storage
@@ -49,6 +50,11 @@ class TestFileStorage(unittest.TestCase):
         storage.reload()
         objects2 = str(storage.all())
         self.assertNotEqual(objects1, objects2)
+
+    def test_file_json(self):
+        """Tests to check if JSON file is created
+        """
+        self.assertTrue(os.path.exists("file.json"))
 
     if __name__ == '__main__':
         unittest.main()
