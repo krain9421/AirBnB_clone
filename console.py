@@ -21,7 +21,7 @@ def idexist(idi=""):
     d = storage.all()
     flag = False
     for key in d.keys():
-        if idi == d[key]["id"]:
+        if idi == d[key].to_dict()["id"]:
             flag = True
             break
     return (flag)
@@ -113,10 +113,10 @@ class HBNBCommand(cmd.Cmd):
             flag = False
             # print("File__objects\n{}".format(d))
             for key in d.keys():
-                if idi == d[key]["id"]:
-                    model_json = d[key]
-                    temp = BaseModel(**model_json)
-                    print(str(temp))
+                if idi == d[key].to_dict()["id"]:
+                    # model_json = d[key].to_dict()
+                    # temp = BaseModel(**model_json)
+                    print(str(d[key]))
                     flag = True
             if not flag:
                 print("** no instance found **")
@@ -146,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
             d = storage.all()
             flag = False
             for key in d.keys():
-                if idi == d[key]["id"]:
+                if idi == d[key].to_dict()["id"]:
                     d.pop(key)
                     flag = True
                     storage.save()
@@ -223,15 +223,16 @@ class HBNBCommand(cmd.Cmd):
         elif not value:
             print("** value missing **")
         else:
+            storage.reload()
             d = storage.all()
             flag = False
             for key in d.keys():
-                if idi == d[key]["id"]:
+                if idi == d[key].to_dict()["id"]:
                     if value[0] == "\"":
                         value = value[1:-1]
                     else:
                         value = valuecast(value)
-                    d[key][attr] = value
+                    d[key].__dict__[attr] = value
                     storage.save()
                     break
 
