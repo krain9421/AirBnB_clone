@@ -28,15 +28,15 @@ class TestFileStorage(unittest.TestCase):
         # d = new.all()
         self.assertEqual(type(storage.all()), dict)
 
-    """def test_new(self):
-        Tests the `new(self, obj)` method
+    def test_new(self):
+        """Tests the `new(self, obj)` method
             of FileStorage
-        
+        """
         model1 = BaseModel()
         objects = str(storage.all())
         model2 = BaseModel()
         self.assertNotEqual(objects, str(storage.all()))
-    """
+    
 
     def test_save_reload(self):
         """Test `save(self)` and `reload(self)`
