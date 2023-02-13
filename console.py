@@ -6,6 +6,11 @@ import cmd
 import inspect
 from models.user import User
 from models.base_model import BaseModel
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 import sys
 current_module = sys.modules[__name__]
@@ -225,15 +230,20 @@ class HBNBCommand(cmd.Cmd):
         else:
             storage.reload()
             d = storage.all()
-            flag = False
             for key in d.keys():
                 if idi == d[key].to_dict()["id"]:
-                    if value[0] == "\"":
-                        value = value[1:-1]
-                    else:
-                        value = valuecast(value)
-                    d[key].__dict__[attr] = value
-                    storage.save()
+                    try:
+                        Type = type(d[key].__dict__[attr])
+                        print(Type)
+                        d[key].__dict__[attr] = Type(value.strip("\""))
+                    except KeyError:
+                        d[key].__dict__[attr] = value.strip("\"")
+                    # if value[0] == "\"":
+                    #    value = value[1:-1]
+                    # else:
+                    #    value = valuecast(value)
+                    # d[key].__dict__[attr] = value
+                    d[key].save()
                     break
 
 
